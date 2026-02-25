@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>🏢 Gestión de Empresas</h2>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% for category, message in messages %}
+    <div class="alert alert-{{ category }}">{{ message }}</div>
+  {% endfor %}
+{% endwith %}
+
+<h4 class="mt-4">Crear Empresa</h4>
+
+<form method="POST">
+    <input type="text" name="nombre" class="form-control mb-2" placeholder="Nombre" required>
+    <input type="text" name="nit" class="form-control mb-2" placeholder="NIT" required>
+    <input type="text" name="direccion" class="form-control mb-2" placeholder="Dirección">
+    <input type="text" name="telefono" class="form-control mb-2" placeholder="Teléfono">
+    <button class="btn btn-success">Crear Empresa</button>
+</form>
+
+<hr>
+
+<h4>Listado</h4>
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>NIT</th>
+        <th>Dirección</th>
+        <th>Teléfono</th>
+        <th>Acciones</th>
+    </tr>
+
+    {% for e in empresas %}
+    <tr>
+        <td>{{ e[0] }}</td>
+        <td>{{ e[1] }}</td>
+        <td>{{ e[2] }}</td>
+        <td>{{ e[3] }}</td>
+        <td>{{ e[4] }}</td>
+        <td>
+            <a href="{{ url_for('empresas.editar_empresa', id=e[0]) }}" class="btn btn-warning btn-sm">Editar</a>
+            <a href="{{ url_for('empresas.eliminar_empresa', id=e[0]) }}" class="btn btn-danger btn-sm">Eliminar</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

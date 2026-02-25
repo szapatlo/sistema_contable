@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>📈 Estado de Resultados</h2>
+
+<h4 class="mt-4">Ingresos</h4>
+<table class="table table-bordered">
+    <tr><th>Código</th><th>Cuenta</th><th>Valor</th></tr>
+    {% for i in ingresos %}
+    <tr>
+        <td>{{ i[0] }}</td>
+        <td>{{ i[1] }}</td>
+        <td>{{ i[2] or 0 }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h4>Gastos</h4>
+<table class="table table-bordered">
+    <tr><th>Código</th><th>Cuenta</th><th>Valor</th></tr>
+    {% for g in gastos %}
+    <tr>
+        <td>{{ g[0] }}</td>
+        <td>{{ g[1] }}</td>
+        <td>{{ g[2] or 0 }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

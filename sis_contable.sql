@@ -55,4 +55,14 @@ INSERT IGNORE INTO cuentas (codigo,nombre,tipo,naturaleza) VALUES
 ('5105','Costo de Ventas','GASTO','DEUDORA'),
 ('6105','Gastos Operativos','GASTO','DEUDORA');
 
-use sis_contable
+use sis_contable;
+select database();
+INSERT INTO movimientos (tipo, descripcion, monto)
+VALUES ('ingreso','Venta',5000);
+
+INSERT INTO movimientos (tipo, descripcion, monto)
+VALUES ('gasto','Compra insumos',2000);
+ALTER TABLE usuarios 
+ADD COLUMN role VARCHAR(20) DEFAULT 'usuario';
+ALTER TABLE usuarios 
+ADD COLUMN role VARCHAR(20) DEFAULT 'usuario';

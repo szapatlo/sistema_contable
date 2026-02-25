@@ -1,0 +1,27 @@
+{% extends "base_public.html" %}
+{% block content %}
+
+<div class="mt-5" style="max-width:400px; margin:auto;">
+    <h3 class="text-center">SISTEMA CONTABLE</h3>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} mt-2">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="/login">
+        <input type="text" name="username" class="form-control mb-3" placeholder="Usuario" required>
+        <input type="password" name="password" class="form-control mb-3" placeholder="Contraseña" required>
+
+        <button type="submit" class="btn btn-primary w-100">
+            Ingresar
+        </button>
+    </form>
+</div>
+
+{% endblock %}

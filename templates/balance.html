@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>📊 Balance General</h2>
+
+<!-- ================= ACTIVO ================= -->
+<h4 class="mt-4 text-primary">Activos</h4>
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Código</th>
+        <th>Cuenta</th>
+        <th class="text-end">Saldo</th>
+    </tr>
+    {% set total_activos = 0 %}
+    {% for a in activos %}
+    {% set total_activos = total_activos + (a[2] or 0) %}
+    <tr>
+        <td>{{ a[0] }}</td>
+        <td>{{ a[1] }}</td>
+        <td class="text-end">{{ "{:,.2f}".format(a[2] or 0) }}</td>
+    </tr>
+    {% endfor %}
+    <tr class="fw-bold">
+        <td colspan="2">Total Activos</td>
+        <td class="text-end">
+            {{ "{:,.2f}".format(total_activos) }}
+        </td>
+    </tr>
+</table>
+
+<!-- ================= PASIVO ================= -->
+<h4 class="mt-4 text-danger">Pasivos</h4>
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Código</th>
+        <th>Cuenta</th>
+        <th class="text-end">Saldo</th>
+    </tr>
+    {% set total_pasivos = 0 %}
+    {% for p in pasivos %}
+    {% set total_pasivos = total_pasivos + (p[2] or 0) %}
+    <tr>
+        <td>{{ p[0] }}</td>
+        <td>{{ p[1] }}</td>
+        <td class="text-end">{{ "{:,.2f}".format(p[2] or 0) }}</td>
+    </tr>
+    {% endfor %}
+    <tr class="fw-bold">
+        <td colspan="2">Total Pasivos</td>
+        <td class="text-end">
+            {{ "{:,.2f}".format(total_pasivos) }}
+        </td>
+    </tr>
+</table>
+
+<!-- ================= PATRIMONIO ================= -->
+<h4 class="mt-4 text-success">Patrimonio</h4>
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Código</th>
+        <th>Cuenta</th>
+        <th class="text-end">Saldo</th>
+    </tr>
+    {% set total_patrimonio = 0 %}
+    {% for p in patrimonio %}
+    {% set total_patrimonio = total_patrimonio + (p[2] or 0) %}
+    <tr>
+        <td>{{ p[0] }}</td>
+        <td>{{ p[1] }}</td>
+        <td class="text-end">{{ "{:,.2f}".format(p[2] or 0) }}</td>
+    </tr>
+    {% endfor %}
+    <tr class="fw-bold">
+        <td colspan="2">Total Patrimonio</td>
+        <td class="text-end">
+            {{ "{:,.2f}".format(total_patrimonio) }}
+        </td>
+    </tr>
+</table>
+
+<hr>
+
+<div class="alert alert-info">
+    <strong>Validación:</strong><br>
+    Activo = {{ "{:,.2f}".format(total_activos) }}<br>
+    Pasivo + Patrimonio = {{ "{:,.2f}".format(total_pasivos + total_patrimonio) }}
+</div>
+
+{% endblock %}
