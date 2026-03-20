@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>📚 Libro Mayor</h2>
+
+<table class="table table-bordered table-striped">
+
+<thead>
+<tr>
+<th>Cuenta</th>
+<th>Fecha</th>
+<th class="text-end">Debe</th>
+<th class="text-end">Haber</th>
+</tr>
+</thead>
+
+<tbody>
+
+{% set total_debe = 0 %}
+{% set total_haber = 0 %}
+
+{% for m in movimientos %}
+
+{% set total_debe = total_debe + (m[3] or 0) %}
+{% set total_haber = total_haber + (m[4] or 0) %}
+
+<tr>
+<td>{{ m[0] }} - {{ m[1] }}</td>
+<td>{{ m[2] }}</td>
+<td class="text-end">{{ "{:,.2f}".format(m[3] or 0) }}</td>
+<td class="text-end">{{ "{:,.2f}".format(m[4] or 0) }}</td>
+</tr>
+
+{% endfor %}
+
+<tr class="fw-bold">
+<td colspan="2">Totales</td>
+<td class="text-end">{{ "{:,.2f}".format(total_debe) }}</td>
+<td class="text-end">{{ "{:,.2f}".format(total_haber) }}</td>
+</tr>
+
+</tbody>
+
+</table>
+
+{% endblock %}

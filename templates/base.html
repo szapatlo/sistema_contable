@@ -2,54 +2,107 @@
 <html>
 <head>
     <title>Sistema Contable</title>
+
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
-        body { margin:0; }
-        .sidebar {
-            width: 250px;
-            height: 100vh;
-            background: #1f2933;
-            color: white;
-            position: fixed;
+
+        body{
+            margin:0;
+            background:#f4f6f9;
         }
-        .sidebar a {
-            color: white;
-            display: block;
-            padding: 10px;
-            text-decoration: none;
+
+        .sidebar{
+            width:250px;
+            height:100vh;
+            background:#1f2933;
+            color:white;
+            position:fixed;
         }
-        .sidebar a:hover {
-            background: #374151;
+
+        .sidebar h4{
+            text-align:center;
         }
-        .content {
-            margin-left: 250px;
-            padding: 20px;
+
+        .sidebar a{
+            color:white;
+            display:block;
+            padding:12px;
+            text-decoration:none;
+            border-radius:5px;
         }
+
+        .sidebar a:hover{
+            background:#374151;
+        }
+
+        .content{
+            margin-left:250px;
+            padding:25px;
+        }
+
     </style>
+
 </head>
+
 <body>
 
+<!-- SIDEBAR -->
 <div class="sidebar p-3">
+
     <h4>SISTEMA CONTABLE</h4>
+
     <hr>
 
-    <a href="{{ url_for('contabilidad.dashboard') }}">🏠 Inicio</a>
-    <a href="{{ url_for('contabilidad.libro_diario') }}">📒 Libro Diario</a>
-    <a href="{{ url_for('reportes.balance') }}">📊 Balance General</a>
-    <a href="{{ url_for('reportes.estado_resultados') }}">📈 Estado Resultados</a>
-    <a href="{{ url_for('empresas.listar_empresas') }}">🏢 Empresas</a>
+    <a href="{{ url_for('contabilidad.dashboard') }}">
+        🏠 Inicio
+    </a>
+
+    <a href="{{ url_for('contabilidad.libro_diario') }}">
+        📒 Libro Diario
+    </a>
+
+    <a href="{{ url_for('reportes.libro_mayor') }}">
+        📚 Libro Mayor
+    </a>
+
+    <a href="{{ url_for('reportes.balance') }}">
+        📊 Balance General
+    </a>
+
+    <a href="{{ url_for('reportes.estado_resultados') }}">
+        📈 Estado Resultados
+    </a>
+
+    <a href="{{ url_for('empresas.listar_empresas') }}">
+        🏢 Empresas
+    </a>
 
     {% if session.get('role') == 'admin' %}
-        <hr>
-        <a href="{{ url_for('auth.register') }}">👤 Crear Usuario</a>
+
+    <hr>
+
+    <a href="{{ url_for('auth.register') }}">
+        👤 Crear Usuario
+    </a>
+
     {% endif %}
 
     <hr>
-    <a href="{{ url_for('auth.logout') }}" class="btn btn-danger mt-3">Cerrar Sesión</a>
+
+    <a href="{{ url_for('auth.logout') }}" class="btn btn-danger w-100">
+        Cerrar Sesión
+    </a>
+
 </div>
 
+
+<!-- CONTENIDO -->
 <div class="content">
+
     {% block content %}{% endblock %}
+
 </div>
 
 </body>

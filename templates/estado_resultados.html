@@ -3,28 +3,99 @@
 
 <h2>📈 Estado de Resultados</h2>
 
-<h4 class="mt-4">Ingresos</h4>
-<table class="table table-bordered">
-    <tr><th>Código</th><th>Cuenta</th><th>Valor</th></tr>
-    {% for i in ingresos %}
-    <tr>
-        <td>{{ i[0] }}</td>
-        <td>{{ i[1] }}</td>
-        <td>{{ i[2] or 0 }}</td>
-    </tr>
-    {% endfor %}
+<!-- ================= INGRESOS ================= -->
+
+<h4 class="mt-4 text-success">Ingresos</h4>
+
+<table class="table table-bordered table-striped">
+
+<tr>
+<th>Código</th>
+<th>Cuenta</th>
+<th class="text-end">Valor</th>
+</tr>
+
+{% set total_ingresos = 0 %}
+
+{% for i in ingresos %}
+
+{% set total_ingresos = total_ingresos + (i[2] or 0) %}
+
+<tr>
+<td>{{ i[0] }}</td>
+<td>{{ i[1] }}</td>
+<td class="text-end">
+{{ "{:,.2f}".format(i[2] or 0) }}
+</td>
+</tr>
+
+{% endfor %}
+
+<tr class="fw-bold">
+<td colspan="2">Total Ingresos</td>
+<td class="text-end">
+{{ "{:,.2f}".format(total_ingresos) }}
+</td>
+</tr>
+
 </table>
 
-<h4>Gastos</h4>
-<table class="table table-bordered">
-    <tr><th>Código</th><th>Cuenta</th><th>Valor</th></tr>
-    {% for g in gastos %}
-    <tr>
-        <td>{{ g[0] }}</td>
-        <td>{{ g[1] }}</td>
-        <td>{{ g[2] or 0 }}</td>
-    </tr>
-    {% endfor %}
+
+<!-- ================= GASTOS ================= -->
+
+<h4 class="mt-4 text-danger">Gastos</h4>
+
+<table class="table table-bordered table-striped">
+
+<tr>
+<th>Código</th>
+<th>Cuenta</th>
+<th class="text-end">Valor</th>
+</tr>
+
+{% set total_gastos = 0 %}
+
+{% for g in gastos %}
+
+{% set total_gastos = total_gastos + (g[2] or 0) %}
+
+<tr>
+<td>{{ g[0] }}</td>
+<td>{{ g[1] }}</td>
+<td class="text-end">
+{{ "{:,.2f}".format(g[2] or 0) }}
+</td>
+</tr>
+
+{% endfor %}
+
+<tr class="fw-bold">
+<td colspan="2">Total Gastos</td>
+<td class="text-end">
+{{ "{:,.2f}".format(total_gastos) }}
+</td>
+</tr>
+
 </table>
+
+
+<!-- ================= UTILIDAD ================= -->
+
+<hr>
+
+<div class="alert alert-info">
+
+<strong>Resultado del ejercicio</strong><br><br>
+
+Ingresos: {{ "{:,.2f}".format(total_ingresos) }}<br>
+
+Gastos: {{ "{:,.2f}".format(total_gastos) }}<br>
+
+Utilidad / Pérdida:
+<strong>
+{{ "{:,.2f}".format(total_ingresos - total_gastos) }}
+</strong>
+
+</div>
 
 {% endblock %}

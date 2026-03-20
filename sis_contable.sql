@@ -66,3 +66,12 @@ ALTER TABLE usuarios
 ADD COLUMN role VARCHAR(20) DEFAULT 'usuario';
 ALTER TABLE usuarios 
 ADD COLUMN role VARCHAR(20) DEFAULT 'usuario';
+
+CREATE TABLE empresas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(200) NOT NULL,
+    nit VARCHAR(50) UNIQUE NOT NULL,
+    direccion VARCHAR(200),
+    telefono VARCHAR(50),
+    creado_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

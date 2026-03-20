@@ -1,11 +1,47 @@
 {% extends "base.html" %}
+
 {% block content %}
 
-<h2>Bienvenido {{ session.username }}</h2>
-<p>Rol: {{ session.role }}</p>
+<h2>Dashboard Contable</h2>
 
-<div class="alert alert-info">
-Sistema Contable Multiempresa - Proyecto Final
+<div class="row mt-4">
+
+<div class="col-md-3">
+<div class="card bg-primary text-white">
+<div class="card-body">
+<h5>Activos</h5>
+<h4>{{ "{:,.2f}".format(activos) }}</h4>
+</div>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card bg-danger text-white">
+<div class="card-body">
+<h5>Pasivos</h5>
+<h4>{{ "{:,.2f}".format(pasivos) }}</h4>
+</div>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card bg-success text-white">
+<div class="card-body">
+<h5>Patrimonio</h5>
+<h4>{{ "{:,.2f}".format(patrimonio) }}</h4>
+</div>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card bg-warning text-dark">
+<div class="card-body">
+<h5>Utilidad</h5>
+<h4>{{ "{:,.2f}".format(utilidad) }}</h4>
+</div>
+</div>
+</div>
+
 </div>
 
 {% endblock %}
